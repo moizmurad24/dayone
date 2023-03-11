@@ -1,31 +1,28 @@
 name: Deploy to Surge
-
 on:
   push:
     branches:
       - master
-
 jobs:
-  deploy:
+  build:
     runs-on: windows-latest
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2.4.4
+        with:
+          node-version: '14.x'
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14.x'
+      - name: Install Dependencies
+        run: npm install
 
-        run: npm install react-scripts@latest
+      - name: Build App
+        run: npm run build
 
-        
-    - name: Creating build
-      run: npm run build
+      - name: Install Surge CLI
+        run: npm install --global surge
 
-    - name: Deploy to Surge
-      run:  npm install --global surge
-    - name: Deploy to Surge again
-      run:  surge ./build moiz_react_day_01.surge.sh
-      env:
-          SURGE_TOKEN: ${{ secrets.SERGE_TOKEN }}
+      - name: Deploy to Surge
+        run: surge ./build moiz_react_day_01.surge.sh
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
