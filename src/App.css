@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+.box {
+  width: 100%;
+  height: 500px;
+  background-color: yellow;
+}
+
+.box2 {
+  width: 100%;
+  height: 500px;
+  background-color: green;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
