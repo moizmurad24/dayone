@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import Student from './Student.js';
-import Message from './Message';
+// import Message from './Message';
 
 
 
